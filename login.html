@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Dashboard Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
+        .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 300px; }
+        h2 { text-align: center; color: #333; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; margin: 8px 0; border: none; cursor: pointer; width: 100%; border-radius: 4px; }
+        .error { color: red; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Industrial IoT Login</h2>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="admin or operator" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="admin123 or operator123" name="password" required>
+                
+            <button type="submit">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 15px;">
+            Test Credentials:<br>
+            admin / admin123
+        </p>
+    </div>
+</body>
+</html>

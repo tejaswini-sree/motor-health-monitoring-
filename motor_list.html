@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Motor List</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; }
+        .header { background-color: #3f51b5; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .header a { color: white; text-decoration: none; padding: 5px 10px; border: 1px solid white; border-radius: 4px; }
+        .container { padding: 20px; max-width: 1000px; margin: 0 auto; }
+        .motor-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .motor-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s; }
+        .motor-card:hover { transform: translateY(-5px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .motor-card h3 { margin-top: 0; color: #3f51b5; }
+        .status-badge { display: inline-block; padding: 5px 10px; border-radius: 12px; font-size: 0.9em; font-weight: bold; color: white; margin-left: 10px; }
+        .Normal { background-color: #4CAF50; }
+        .Warning { background-color: #FFC107; color: #333; }
+        .Critical { background-color: #F44336; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Motors in Zone <span id="zone-id-display">...</span></h1>
+        <div>
+            <a href="{{ url_for('zone_overview') }}">Zone Overview</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="motor-list-container" class="motor-list">
+            <p id="loading-message">Loading Motors...</p>
+        </div>
+    </div>
+    
+    <script>
+        const ZONE_ID = {{ zone_id }};
+    </script>
+    
+    <script src="{{ url_for('static', filename='js/motor_list.js') }}"></script>
+</body>
+</html>
